@@ -223,22 +223,15 @@ func getLength(text string, size int, myFont *truetype.Font) int {
 }
 
 func getDaysHoursMinutesSeconds(duration time.Duration) (int, int, int, int) {
+
+	if duration < 0 {
+		return 0, 0, 0, 0
+	}
+
 	totalDays := int(duration.Hours() / 24)
-	if totalDays < 0 {
-		totalDays = 0
-	}
 	totalHours := int(duration.Hours()) % 24
-	if totalHours < 0 {
-		totalHours = 0
-	}
 	totalMinutes := int(duration.Minutes()) % 60
-	if totalMinutes < 0 {
-		totalMinutes = 0
-	}
 	totalSeconds := int(duration.Seconds()) % 60
-	if totalSeconds < 0 {
-		totalSeconds = 0
-	}
 
 	return totalDays, totalHours, totalMinutes, totalSeconds
 }
